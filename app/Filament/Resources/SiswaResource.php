@@ -42,7 +42,7 @@ class SiswaResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('nama_siswa')->searchable(),
-                TextColumn::make('kelas.fullClass')->sortable(),
+                TextColumn::make('kelas.fullClass'),
             ])
             ->filters([
                 //
