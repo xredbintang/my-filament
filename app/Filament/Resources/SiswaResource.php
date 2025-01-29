@@ -30,7 +30,9 @@ class SiswaResource extends Resource
                 Select::make('kelas_siswa_id')
                 ->label('Kelas')
                 ->options(function () {
-                    return \App\Models\Kelas::all()->pluck('fullClass', 'id');
+                    return \App\Models\Kelas::orderBy('tingkatan','asc')->get()->mapWithKeys(function ($kelas){
+                        return [$kelas->id => $kelas->fullCLass];
+                    });
                 }),
             ]);
     }

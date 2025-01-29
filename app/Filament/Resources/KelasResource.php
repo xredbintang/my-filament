@@ -45,24 +45,7 @@ class KelasResource extends Resource
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
-                Tables\Actions\Action::make('naik_kelas')->label('naik kelas')->icon('heroicon-o-arrow-up')
-                ->form([
-                    Select::make('kelas_tujuan')
-                            ->label('Pindah ke Kelas')
-                            ->options(function (Kelas $record) {
-                                return Kelas::query()
-                                    ->where('id', '!=', $record->id) // Tidak termasuk kelas saat ini
-                                    ->get()->mapWithKeys(function($kelas){
-                                        return [$kelas->id=>"{$kelas->nama_kelas} - Tingkatan {$kelas->tingkatan}"];
-                                    });
-                            })
-                            ->required(),
-                ])
-                ->action(function (Kelas $record, array $data): void {
-                    $record->siswa()->update(['kelas_siswa_id' => $data['kelas_tujuan']]);
-                })
-                ->modalHeading('Pindahkan Semua Siswa')
-                ->requiresConfirmation(),
+                Tables\Actions\DeleteAction::make(),
                 
             ])
             ->bulkActions([
