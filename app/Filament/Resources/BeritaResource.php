@@ -51,7 +51,7 @@ class BeritaResource extends Resource
                 TextColumn::make('judul_berita')->searchable(),
                 TextColumn::make('kategori.kategori_nama'),
                 TextColumn::make('penulis.penulis_nama'),
-                TextColumn::make('deskripsi_berita'),
+                TextColumn::make('deskripsi_berita')->copyable(),
                 ImageColumn::make('gambar_berita'),
                 TextColumn::make('tanggal_publikasi'),
             ])
