@@ -14,4 +14,4 @@ Memasukkan konten berita yang dapat dipublikasikan.
 4. Dashboard Admin
 Menggunakan Filament untuk membangun dashboard admin yang interaktif dan mudah digunakan.
 Fitur pencarian, filter, dan pengurutan untuk memudahkan navigasi dan pengelolaan data.
-5. Beda User beda PANEL
+5. Update Role menggunakan SPATIE
