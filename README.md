@@ -1,4 +1,4 @@
-#Fitur Utama FILAMENT TESTING
+#Fitur BROKEN!! tinggalkan repo ini dan beralih ke my-filament-reset
 1. Manajemen Siswa
 Menambah, mengedit, dan menghapus data siswa.
 Memasukkan informasi seperti nama, kelas, dan data penting lainnya.
