@@ -8,6 +8,7 @@ use Filament\Forms;
 use Filament\Forms\Components\Card;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Form;
+use Filament\Resources\Pages\CreateRecord;
 use Filament\Resources\Pages\Page;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -38,11 +39,17 @@ class UserResource extends Resource
                         ->dehydrateStateUsing(fn ($state) => Hash::make($state)) // Hash password
                         ->dehydrated(fn ($state) => filled($state))
                         ->required(fn (Page $livewire) => ($livewire instanceof CreateUser))
+                        ->maxLength(255)
+                        ->same('passwordConfirmation'),
+                    Forms\Components\TextInput::make('passwordConfirmation')
+                        ->password()
                         ->maxLength(255),
-                    Select::make('roles')
-                        ->relationship('roles', 'name')
-                        ->preload()
-                        ->multiple(),
+                        Forms\Components\Select::make('role')
+                        ->options(Role::pluck('name', 'name')->toArray()) // Menampilkan daftar role
+                        ->default('User') // Default ke role "User"
+                        ->required(),
+
+
                 ]),
             ]);
     }
@@ -54,10 +61,7 @@ class UserResource extends Resource
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('roles.name')
-                    ->label('Roles')
-                    ->searchable(),
+                    ->searchable()
             ])
             ->filters([
                 //
@@ -89,8 +93,8 @@ class UserResource extends Resource
         ];
     }
 
-    public static function canViewAny(): bool
-    {
-        return auth()->user()->hasRole('Admin');
-    }
+    // public static function canViewAny(): bool
+    // {
+    //     return auth()->user()->hasRole('Admin');
+    // }
 }
